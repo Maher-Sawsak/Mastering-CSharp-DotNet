@@ -1,0 +1,7 @@
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\bin\Debug\Main1.exe.config
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\bin\Debug\Main1.exe
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\bin\Debug\Main1.pdb
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\obj\Debug\Main1.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\obj\Debug\Main1.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\obj\Debug\Main1.exe
+C:\Users\user\OneDrive\Desktop\C-Sharp-Learning-Path\C# - Level 1\Main1\Main1\obj\Debug\Main1.pdb
