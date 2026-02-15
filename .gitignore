@@ -1,60 +1,39 @@
-# =========================
-# Visual Studio / C#
-# =========================
-
-## User-specific files
-*.user
-*.rsuser
-*.suo
-*.userosscache
-*.sln.docstates
-
-## Build results
-[Dd]ebug/
-[Rr]elease/
-x64/
-x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bin/
-obj/
-out/
-
-## Visual Studio cache
+## --- مجلدات بيئة العمل (Visual Studio) ---
 .vs/
+[Bb]in/
+[Oo]bj/
+TestResults/
+*.suo
+*.user
+*.userosscache
+*.sln.docuser
 
-## Rider
-.idea/
+## --- ملفات البناء والتشغيل (Build Artifacts) ---
+*.exe
+*.dll
+*.pdb
+*.psccore
+*.publishproj
+*.svclog
 
-## .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
+## --- ملفات قواعد البيانات المحلية ---
+*.mdf
+*.ldf
+*.sdf
+*.dbmdl
 
-## NuGet
-*.nupkg
-*.snupkg
+## --- ملفات NuGet (المكتبات الخارجية) ---
+# نحن نرفع ملف packages.config وليس المجلد نفسه
 packages/
-.nuget/
+!packages/repositories.config
 
-## Publish
-publish/
+## --- ملفات النظام (OS Files) ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
 
-## Logs
+## --- ملفات Log والملفات المؤقتة ---
 *.log
-
-## Backup / temp
 *.tmp
 *.temp
-*.bak
-*.swp
-*.~
-~$*
-
-## OS files
-.DS_Store
-Thumbs.db
-
-# =========================
-# END
-# =========================
