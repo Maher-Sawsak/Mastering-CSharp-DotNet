@@ -36,7 +36,7 @@ namespace Tic_Tac_Toe_Game_Project
 
             if (Convert.ToString(pbCurrent.Tag) != "Empty")
             {
-                MessageBox.Show("Wrong Choice", "Wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong Choice, already chosen", "Wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return true;
             }
@@ -82,35 +82,46 @@ namespace Tic_Tac_Toe_Game_Project
 
             }
             else if (Convert.ToString(pictureBox1.Tag) == "X" && Convert.ToString(pictureBox4.Tag) == "X"
- && Convert.ToString(pictureBox7.Tag) == "X")
+             && Convert.ToString(pictureBox7.Tag) == "X")
             {
-                lblWinner.Text = "Player 2";
+                lblWinner.Text = "Player 1";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pictureBox1.BackColor = Color.Green;
+                pictureBox4.BackColor = Color.Green;
                 pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
-                pictureBox9.BackColor = Color.Green;
                 return;
 
             }
             else if (Convert.ToString(pictureBox2.Tag) == "X" && Convert.ToString(pictureBox7.Tag) == "X"
             && Convert.ToString(pictureBox5.Tag) == "X")
             {
-                lblWinner.Text = "Player 2";
+                lblWinner.Text = "Player 1";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pictureBox2.BackColor = Color.Green;
                 pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
-                pictureBox9.BackColor = Color.Green;
+                pictureBox5.BackColor = Color.Green;
                 return;
 
             }
             else if (Convert.ToString(pictureBox3.Tag) == "X" && Convert.ToString(pictureBox6.Tag) == "X"
             && Convert.ToString(pictureBox9.Tag) == "X")
             {
-                lblWinner.Text = "Player 2";
+                lblWinner.Text = "Player 1";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
+                pictureBox3.BackColor = Color.Green;
+                pictureBox6.BackColor = Color.Green;
                 pictureBox9.BackColor = Color.Green;
+                return;
+
+            }
+            else if (Convert.ToString(pictureBox2.Tag) == "X" && Convert.ToString(pictureBox8.Tag) == "X"
+          && Convert.ToString(pictureBox5.Tag) == "X")
+            {
+                lblWinner.Text = "Player 1";
+                MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pictureBox2.BackColor = Color.Green;
+                pictureBox5.BackColor = Color.Green;
+                pictureBox8.BackColor = Color.Green;
                 return;
 
             }
@@ -163,9 +174,9 @@ namespace Tic_Tac_Toe_Game_Project
             {
                 lblWinner.Text = "Player 2";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pictureBox3.BackColor = Color.Green;
+                pictureBox5.BackColor = Color.Green;
                 pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
-                pictureBox9.BackColor = Color.Green;
                 return;
 
             }
@@ -174,9 +185,9 @@ namespace Tic_Tac_Toe_Game_Project
             {
                 lblWinner.Text = "Player 2";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pictureBox1.BackColor = Color.Green;
+                pictureBox4.BackColor = Color.Green;
                 pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
-                pictureBox9.BackColor = Color.Green;
                 return;
 
             }
@@ -185,9 +196,9 @@ namespace Tic_Tac_Toe_Game_Project
             {
                 lblWinner.Text = "Player 2";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pictureBox2.BackColor = Color.Green;
                 pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
-                pictureBox9.BackColor = Color.Green;
+                pictureBox5.BackColor = Color.Green;
                 return;
 
             }
@@ -196,8 +207,8 @@ namespace Tic_Tac_Toe_Game_Project
             {
                 lblWinner.Text = "Player 2";
                 MessageBox.Show("Game Over", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pictureBox7.BackColor = Color.Green;
-                pictureBox8.BackColor = Color.Green;
+                pictureBox3.BackColor = Color.Green;
+                pictureBox6.BackColor = Color.Green;
                 pictureBox9.BackColor = Color.Green;
                 return;
 
@@ -263,17 +274,6 @@ namespace Tic_Tac_Toe_Game_Project
             }
         }
         
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-            if (IsChosen(pictureBox1))
-                return;
-     
-      
-            UpdateImage(pictureBox1);
-            UpdateWinner();
-            UpdateTurn();
-        }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -292,108 +292,31 @@ namespace Tic_Tac_Toe_Game_Project
 
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        private void pictureBox_Click(object sender, EventArgs e)
         {
-         
-            this.Text = $"X = {e.X} , Y = {e.Y}";
-        
-        }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox2))
+            if (IsChosen((PictureBox)sender))
                 return;
 
 
-
-            UpdateImage(pictureBox2);
+            UpdateImage((PictureBox)sender);
             UpdateWinner();
             UpdateTurn();
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (IsChosen(pictureBox3))
-               return;
-            
 
-
-            UpdateImage(pictureBox3);
-            UpdateWinner();
-            UpdateTurn();
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox4))
+            if (IsChosen(pictureBox1))
                 return;
-
-
-
-            UpdateImage(pictureBox4);
+     
+      
+            UpdateImage(pictureBox1);
             UpdateWinner();
             UpdateTurn();
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox5))
-                return;
-
-
-
-            UpdateImage(pictureBox5);
-            UpdateWinner();
-            UpdateTurn();
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox6))
-                return;
-
-
-
-            UpdateImage(pictureBox6);
-            UpdateWinner();
-            UpdateTurn();
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox7))
-                return;
-
-
-
-            UpdateImage(pictureBox7);
-            UpdateWinner();
-            UpdateTurn();
-        }
-
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox8))
-                return;
-
-
-
-            UpdateImage(pictureBox8);
-            UpdateWinner();
-            UpdateTurn();
-        }
-
-        private void pictureBox9_Click(object sender, EventArgs e)
-        {
-            if (IsChosen(pictureBox9))
-                return;
-
-
-
-            UpdateImage(pictureBox9);
-            UpdateWinner();
-            UpdateTurn();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
