@@ -130,5 +130,16 @@ namespace ColorDialog
             }
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //it will allow u to shoe the button make new folder to make new one.
+            //and it will make one actually in the folders .
+            folderBrowserDialog1.ShowNewFolderButton = true;
+
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK) {
+                MessageBox.Show(folderBrowserDialog1.SelectedPath);            
+            }
+        }
     }
 }
