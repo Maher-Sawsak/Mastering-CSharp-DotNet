@@ -38,5 +38,25 @@ The files in this folder are saved in the `.drawio` format. Since GitHub nativel
 
 3\. On the start screen, click on \*\*"Open Existing Diagram"\*\*.
 
-4\. \*\*Select\*\* the downloaded file from your device and click Open.
+4\. \*\*select
+VehicleDetails.ID,
+VehicleDetails.MakeID,Makes.Make,
+VehicleDetails.ModelID, MakeModels.ModelName,
+VehicleDetails.SubModelID, SubModels.SubModelName,
+VehicleDetails.BodyID,Bodies.BodyName,
+VehicleDetails.Vehicle_Display_Name,
+VehicleDetails.Year,
+VehicleDetails.DriveTypeID,DriveTypes.DriveTypeName,
+VehicleDetails.Engine,
+VehicleDetails.Engine_CC,
+VehicleDetails.Engine_Cylinders,VehicleDetails.Engine_Liter_Display,
+VehicleDetails.FuelTypeID,FuelTypes.FuelTypeName,
+VehicleDetails.NumDoors 
+from VehicleDetails
+join Makes on VehicleDetails.MakeID=Makes.MakeID
+join MakeModels on MakeModels.ModelID=VehicleDetails.ModelID
+join SubModels on SubModels.SubModelID=VehicleDetails.SubModelID
+join Bodies on Bodies.BodyID=VehicleDetails.BodyID
+join DriveTypes on DriveTypes.DriveTypeID=VehicleDetails.DriveTypeID 
+join FuelTypes on FuelTypes.FuelTypeID=VehicleDetails.FuelTypeID;Select\*\* the downloaded file from your device and click Open.
 
