@@ -12,8 +12,8 @@ namespace ContactsBusinessLayer
 
     public class clsContacts
     {
-
-
+        enum enMode { Add = 0,Update = 1 };
+        enMode Mode;
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -23,6 +23,23 @@ namespace ContactsBusinessLayer
         public string ImagePath { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int CountryID { get; set; }
+
+        public clsContacts()
+        {
+            //this constructor if the object is created on the presentation Layer
+            //I will set these value as default andd give Add mode cuz the data is new.
+            this.ID = -1;
+            this.FirstName = "";
+            this.LastName = "";
+            this.Email = "";
+            this.Phone = "";
+            this.Address = "";
+            this.ImagePath = "";
+            this.CountryID = -1;
+            this.DateOfBirth = DateTime.Now;
+            Mode = enMode.Add;//if the user create a new and empty object and late set values I will consider these values as deafult with mode add
+                              //and I will will use the mode in save function will benefit me later to know i will Update or Add to database.
+        }
 
 
 
@@ -38,6 +55,40 @@ namespace ContactsBusinessLayer
             this.DateOfBirth = DateOfBirth;
             this.CountryID = CountryID;
             this.ImagePath = ImagePath;
+
+            Mode = enMode.Update;//if its return with data i mean if object hold data by find Function so its on the database so mode is update.
+        }
+
+
+        private bool _AddNewContact() {
+
+            this.ID = clsContactDataAccess.AddNewContact(this.FirstName, this.LastName, this.Email,
+                                                         this.Phone, this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
+            return (this.ID != -1);//if in data Access layer doesn't add any record will return -1 and my default value in constructor for ID is -1.     
+                
+        }
+
+        public bool Save() {
+
+            switch (Mode) 
+            {
+
+            case enMode.Add:
+
+                    if (_AddNewContact())
+                    {
+
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                    //I will Add The Update case here so there will be more code here next time.   
+          
+           }
+            // Remember to remove this line return false i add it to test now just i will make here return update function
+            return false;
 
         }
 

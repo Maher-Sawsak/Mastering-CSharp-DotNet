@@ -30,9 +30,27 @@ namespace Contacts_Solution__Console_app____Find_Contact
                 Console.WriteLine($"The {ContactID} Not Found");
             }
         }
+
+        static void TestAddContact() {
+            clsContacts NewContact = new clsContacts();
+            NewContact.FirstName = "Maher";
+            NewContact.LastName = "Sawsak";
+            NewContact.Phone = "05342697871";
+            NewContact.Email = "mahersawsak2@gmail.com";
+            NewContact.Address = "Ankara,Turkey";
+            NewContact.DateOfBirth = new DateTime(2005, 01, 25);
+            NewContact.CountryID = 1;
+
+            if (NewContact.Save()) {
+                Console.WriteLine($"The Contact Id {NewContact.ID} Added Successfully To Database");
+            }
+        
+        }
         static void Main(string[] args)
         {
-            TestFindContact(1);
+            //TestFindContact(1);
+
+            TestAddContact();
 
         }
     }
