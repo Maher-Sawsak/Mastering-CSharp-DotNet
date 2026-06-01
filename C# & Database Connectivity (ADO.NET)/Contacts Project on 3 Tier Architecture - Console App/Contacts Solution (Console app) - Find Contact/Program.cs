@@ -122,7 +122,24 @@ namespace Contacts_Solution__Console_app____Find_Contact
         
         }
 
+        static void TestFindCountry(int ID) {
 
+
+
+            clsCountry CountryObject = clsCountry.FindCountryByID(ID);
+
+            if (CountryObject != null)
+            {
+                Console.WriteLine($"Country ID : {CountryObject.CountryID} ");
+                Console.WriteLine($"Country Name : {CountryObject.CountryName}");
+            }
+            else
+            {
+
+                Console.WriteLine($"The {ID} Not Found");
+            }
+
+        }
 
         
         static void Main(string[] args)
@@ -138,11 +155,10 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
             // ListAllContacts();
 
-            TestContactExist(100);//There is no record in my database with number 100.
-            TestContactExist(1);// there is a record with ID number 1 its exist.
+            // TestContactExist(100);//There is no record in my database with number 100.
+            // TestContactExist(1);// there is a record with ID number 1 its exist.
 
-
-
+            TestFindCountry(1);
         }
     }
 }
