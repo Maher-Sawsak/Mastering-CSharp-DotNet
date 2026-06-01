@@ -71,14 +71,27 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
         static void TestDeleteContact(int ContactID) 
         {
-            if (clsContacts.DeleteContacts(ContactID))
+
+
+            if (clsContacts.isContactExist(ContactID))
             {
-                Console.WriteLine($"Conatct With ID {ContactID} Deletes Successfully");
+                Console.WriteLine($"Contact With ID Number {ContactID} Is Found");
+
+                if (clsContacts.DeleteContacts(ContactID))
+                {
+                    Console.WriteLine($"Conatct With ID {ContactID} Deletes Successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Failed To Delete");
+                }
             }
             else {
-                Console.WriteLine("Failed To Delete");
+
+                Console.WriteLine($"Contact With ID Number {ContactID} Is Not Found To Delete");
+
             }
-        
+
         }
 
 
@@ -96,7 +109,18 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
         }
 
+        static void TestContactExist(int ID) 
+        {
 
+            if (clsContacts.isContactExist(ID))
+            {
+                Console.WriteLine($"Contact With ID Number {ID} Is Found");
+            }
+            else { 
+            Console.WriteLine($"Contact With ID Number {ID} Is  Not Found");
+            }
+        
+        }
 
 
 
@@ -112,8 +136,10 @@ namespace Contacts_Solution__Console_app____Find_Contact
             //TestDeleteContact(15);
 
 
-            ListAllContacts();
+            // ListAllContacts();
 
+            TestContactExist(100);//There is no record in my database with number 100.
+            TestContactExist(1);// there is a record with ID number 1 its exist.
 
 
 

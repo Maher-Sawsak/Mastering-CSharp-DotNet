@@ -5,6 +5,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,7 +144,11 @@ namespace ContactsBusinessLayer
 
 
 
-
+        public static bool isContactExist(int ContactID) 
+        {
+        return clsContactDataAccess.IsContactExist(ContactID);
+                
+        }
 
 
 
