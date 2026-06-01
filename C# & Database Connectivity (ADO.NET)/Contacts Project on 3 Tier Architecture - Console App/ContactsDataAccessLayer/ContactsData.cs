@@ -34,6 +34,7 @@ namespace ContactsDataAccessLayer
                 {
 
                     //IF iTS Read that means its found will make the flag as true in this case.
+                    //and those doesn't allow null except the image path so i will handel it if its null in the databasse.
                     IsFound = true;
                     FirstName = (string)reader["FirstName"];
                     LastName = (string)reader["LastName"];
@@ -42,8 +43,15 @@ namespace ContactsDataAccessLayer
                     Address = (string)reader["Address"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
                     CountryID = (int)reader["CountryID"];
-                    ImagePath = (string)reader["ImagePath"];
 
+                    if (reader["ImagePath"] != DBNull.Value)
+                    {
+
+                        ImagePath = (string)reader["ImagePath"];
+                    }
+                    else {
+                        ImagePath = "";
+                    }
                     reader.Close();
                 }
 
