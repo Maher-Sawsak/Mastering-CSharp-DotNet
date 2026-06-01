@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,6 +80,27 @@ namespace Contacts_Solution__Console_app____Find_Contact
             }
         
         }
+
+
+        static void ListAllContacts() {
+
+            DataTable dataTable = clsContacts.GetAllContacts();//this method will return full data as DataTable instead of reader.
+
+
+            foreach (DataRow Row in dataTable.Rows) {
+
+                Console.WriteLine($"ID = {Row["ContactID"]} , First Name: {Row["FirstName"]}  LastName: {Row["LastName"]}");
+            }
+
+
+
+        }
+
+
+
+
+
+        
         static void Main(string[] args)
         {
             //TestFindContact(1);
@@ -87,7 +109,14 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
             //TestUpdateContact(6);
 
-            TestDeleteContact(15);
+            //TestDeleteContact(15);
+
+
+            ListAllContacts();
+
+
+
+
         }
     }
 }

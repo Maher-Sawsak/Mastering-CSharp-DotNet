@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -127,6 +129,29 @@ namespace ContactsBusinessLayer
         {
             return (clsContactDataAccess.DeleteContact(ContactID));
         }
+
+
+
+
+
+        public static DataTable GetAllContacts() {
+
+            return (clsContactDataAccess.GetAllContacts());
+        
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

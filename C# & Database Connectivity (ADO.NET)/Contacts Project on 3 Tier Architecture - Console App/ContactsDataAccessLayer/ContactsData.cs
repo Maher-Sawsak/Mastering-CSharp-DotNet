@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -227,7 +228,40 @@ namespace ContactsDataAccessLayer
 
 
 
+        public static DataTable GetAllContacts() {
 
+
+            DataTable DT = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Contacts";
+
+            SqlCommand command = new SqlCommand(query,connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader Reader = command.ExecuteReader();
+
+                if (Reader.HasRows)
+                {
+                    //the there are data in the reader i will Load these data to the dataTable variable its like an 2D array.
+                    DT.Load(Reader);
+                }
+
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally {
+                connection.Close();
+            }
+
+            return DT;
+        }
         
 
 
