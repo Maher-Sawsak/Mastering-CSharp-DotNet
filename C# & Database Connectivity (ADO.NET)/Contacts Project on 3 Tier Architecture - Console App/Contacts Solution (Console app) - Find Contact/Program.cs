@@ -67,15 +67,27 @@ namespace Contacts_Solution__Console_app____Find_Contact
                 Console.WriteLine("Error, The Update Failed");
             }
         }
+
+        static void TestDeleteContact(int ContactID) 
+        {
+            if (clsContacts.DeleteContacts(ContactID))
+            {
+                Console.WriteLine($"Conatct With ID {ContactID} Deletes Successfully");
+            }
+            else {
+                Console.WriteLine("Failed To Delete");
+            }
         
-        
+        }
         static void Main(string[] args)
         {
             //TestFindContact(1);
 
             //TestAddContact();
 
-            TestUpdateContact(6);
+            //TestUpdateContact(6);
+
+            TestDeleteContact(15);
         }
     }
 }

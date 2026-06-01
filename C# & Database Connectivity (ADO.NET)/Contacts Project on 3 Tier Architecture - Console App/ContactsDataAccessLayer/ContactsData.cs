@@ -196,7 +196,34 @@ namespace ContactsDataAccessLayer
 
 
 
+        public static bool DeleteContact(int ID) {
+            //is its still zero means the command doesn't run untill now.
+            int NumberOfAffectedRows = 0;
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+                
+              string query = "DELETE FROM Contacts WHERE ContactID = @ID"; 
+
+            SqlCommand  command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", ID);
+
+            try
+            {
+                connection.Open();
+
+                NumberOfAffectedRows = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally {
+                connection.Close();
+            }
+
+            return (NumberOfAffectedRows > 0);
+        }
 
 
 

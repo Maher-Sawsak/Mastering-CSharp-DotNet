@@ -122,6 +122,12 @@ namespace ContactsBusinessLayer
         }
 
 
+
+        public static bool DeleteContacts(int ContactID) 
+        {
+            return (clsContactDataAccess.DeleteContact(ContactID));
+        }
+
     }
 
 
