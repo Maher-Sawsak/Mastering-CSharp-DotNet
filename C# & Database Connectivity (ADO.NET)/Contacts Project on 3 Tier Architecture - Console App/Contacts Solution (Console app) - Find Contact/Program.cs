@@ -46,12 +46,36 @@ namespace Contacts_Solution__Console_app____Find_Contact
             }
         
         }
+
+        static void TestUpdateContact(int ID) {
+
+            clsContacts ExistingContact = clsContacts.Find(ID);
+
+            ExistingContact.FirstName = "Lina";
+            ExistingContact.LastName = "Sawsak";
+            ExistingContact.Phone = "1231233123";
+            ExistingContact.Email = "Lina@gmail.com";
+            ExistingContact.Address = "Istanbul";
+            ExistingContact.CountryID = 2;
+            ExistingContact.DateOfBirth = new DateTime(1999,10,23);
+
+            if (ExistingContact.Save())
+            {
+                Console.WriteLine($"Contact ID Number {ExistingContact.ID} Updated Successfully");
+            }
+            else {
+                Console.WriteLine("Error, The Update Failed");
+            }
+        }
+        
+        
         static void Main(string[] args)
         {
             //TestFindContact(1);
 
-            TestAddContact();
+            //TestAddContact();
 
+            TestUpdateContact(6);
         }
     }
 }

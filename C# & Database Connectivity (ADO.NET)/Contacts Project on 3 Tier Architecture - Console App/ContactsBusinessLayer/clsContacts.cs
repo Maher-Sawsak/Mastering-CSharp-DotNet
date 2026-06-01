@@ -65,10 +65,18 @@ namespace ContactsBusinessLayer
             this.ID = clsContactDataAccess.AddNewContact(this.FirstName, this.LastName, this.Email,
                                                          this.Phone, this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
             return (this.ID != -1);//if in data Access layer doesn't add any record will return -1 and my default value in constructor for ID is -1.     
-                
-        }
+              
+  }
 
-        public bool Save() {
+        private bool _UpdateContact() 
+        {
+            return (clsContactDataAccess.UpdateContact(this.ID, this.FirstName, this.LastName, this.Email, this.Phone, this.Address, this.DateOfBirth,
+                this.CountryID, this.ImagePath));      
+        
+        }
+                   
+       
+     public bool Save() {
 
             switch (Mode) 
             {
@@ -84,13 +92,13 @@ namespace ContactsBusinessLayer
                     else {
                         return false;
                     }
-                    //I will Add The Update case here so there will be more code here next time.   
-          
-           }
-            // Remember to remove this line return false i add it to test now just i will make here return update function
-            return false;
+                case enMode.Update:
+                    return _UpdateContact();
 
-        }
+           }
+            
+            return false;
+}
 
         public static clsContacts Find(int ContactID)
         {

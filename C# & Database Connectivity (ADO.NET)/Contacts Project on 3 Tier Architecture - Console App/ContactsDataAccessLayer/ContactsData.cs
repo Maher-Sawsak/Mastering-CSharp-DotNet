@@ -14,7 +14,7 @@ namespace ContactsDataAccessLayer
 
 
         public static bool GetContactInfoByID(int ID, ref string FirstName, ref string LastName, ref string Email,
-                                              ref string Phone, ref string Address, ref DateTime DateOfBirth, ref int CountryID, ref string ImagePath){
+                                              ref string Phone, ref string Address, ref DateTime DateOfBirth, ref int CountryID, ref string ImagePath) {
 
             bool IsFound = false;
 
@@ -101,7 +101,7 @@ namespace ContactsDataAccessLayer
             }
             else {
                 //this means put the null instead of @ImagePath which is in the query.
-                command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);            
+                command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
             }
 
 
@@ -120,9 +120,9 @@ namespace ContactsDataAccessLayer
 
                     ContactID = InsertedID;
                 }
-             
+
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
             }
@@ -138,6 +138,60 @@ namespace ContactsDataAccessLayer
 
 
 
+        public static bool UpdateContact(int ID,  string FirstName,  string LastName,  string Email,
+                                               string Phone,  string Address,  DateTime DateOfBirth,  int CountryID, string ImagePath)
+        {
+
+            int NumberOfAffectedRows = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"UPDATE Contacts SET FirstName = @FirstName, LastName= @LastName ,Email = @Email,  Phone = @Phone,
+                            Address = @Address,  DateOfBirth = @DateOfBirth ,CountryID = @CountryID,ImagePath = @ImagePath 
+                             WHERE ContactID = @ContactID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@FirstName", FirstName);
+            command.Parameters.AddWithValue("@LastName", LastName);
+            command.Parameters.AddWithValue("@Email", Email);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+            command.Parameters.AddWithValue("@CountryID", CountryID);
+            command.Parameters.AddWithValue("@ContactID", ID);
+
+            if (ImagePath != "")
+            {
+                command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            }
+            else {
+                command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
+            }
+
+            try
+            {
+
+                connection.Open();
+
+                NumberOfAffectedRows = command.ExecuteNonQuery();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally {
+                connection.Close();
+            }
+
+
+            return (NumberOfAffectedRows > 0);
+
+
+
+        }
 
 
 
