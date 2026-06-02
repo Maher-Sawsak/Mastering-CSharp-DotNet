@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using ContactsBusinessLayer;
 namespace Contacts_Solution__Console_app____Find_Contact
 {
@@ -157,6 +158,37 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
         }
+
+
+
+        static void TestUpdateCountry(int CountryID,string NewCountryName)
+        {
+        
+        clsCountry OldRecord = clsCountry.FindCountryByID(CountryID);
+         
+            if (OldRecord != null)
+            {
+                OldRecord.CountryName = NewCountryName;
+
+            }
+            
+
+            if (OldRecord.Save())
+            {
+                Console.WriteLine($"Country With This ID : {CountryID} , Updated Successfully");
+
+
+            }
+            else {
+                Console.WriteLine($"Could Not Found Country With This ID : {CountryID}");
+            }
+
+        }
+        
+        
+        
+        
+        
         static void Main(string[] args)
         {
             //TestFindContact(1);
@@ -176,8 +208,11 @@ namespace Contacts_Solution__Console_app____Find_Contact
             //TestFindCountry(1);
 
 
-            ////Done Successfully This Method.
-            TestAddNewCountry("Syria");
+            ////Done Successfully This Method with ID 6.
+            //TestAddNewCountry("Syria");
+
+
+            TestUpdateCountry(6, "Turkey");
         }
     }
 }

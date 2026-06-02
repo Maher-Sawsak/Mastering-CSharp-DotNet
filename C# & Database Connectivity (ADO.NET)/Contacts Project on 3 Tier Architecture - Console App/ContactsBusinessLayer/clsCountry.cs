@@ -51,13 +51,22 @@ namespace ContactsBusinessLayer
             return (CountryID != -1);
         }
 
+        private bool _UpdateCountryRecord() {
+
+
+            return (clsCountryDataAccess.UpdateCountry(this.CountryID,this.CountryName));
+        
+        }
 
         public  bool Save() {
 
             switch (Mode) { 
                 case enMode.Add:
                     return (_AddNewCountry());
-            
+
+
+                case enMode.Update:
+                    return (_UpdateCountryRecord());
             }
             return false;
         }
