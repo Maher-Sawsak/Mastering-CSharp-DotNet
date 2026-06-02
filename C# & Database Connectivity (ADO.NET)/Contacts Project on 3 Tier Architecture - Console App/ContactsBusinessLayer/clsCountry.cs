@@ -90,7 +90,10 @@ namespace ContactsBusinessLayer
         }
 
 
-
+        public static bool IsCountryExist(int CountryID) 
+        {
+            return (clsCountryDataAccess.IsCountryExist(CountryID));
+        }
 
 
 

@@ -225,6 +225,19 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
+        static void TestIsCountryExist(int CountryID) 
+        {
+            if (clsCountry.IsCountryExist(CountryID)) {
+
+                Console.WriteLine($"Country With ID {CountryID} Is Found Successfully");
+            }
+            else{
+                Console.WriteLine($"Country With ID {CountryID} Failed To Found");
+            }
+        
+        }
+
+
 
 
 
@@ -263,7 +276,16 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
-            PrintAllCountries();
+            // PrintAllCountries();
+
+
+
+
+            TestIsCountryExist(2);
+
+
+
+
 
 
 

@@ -192,6 +192,38 @@ namespace ContactsDataAccessLayer
 
 
 
+        public static bool IsCountryExist(int CountryID) 
+        {
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select Found = 1 From Countries where CountryID = @CountryID";
+
+            SqlCommand command = new SqlCommand(query,connection);
+            command.Parameters.AddWithValue("@CountryID", CountryID);
+
+            try
+            {
+                connection.Open();
+              object  Result = command.ExecuteScalar();
+                if (Result != null) { 
+                IsFound  = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+            finally 
+            {
+                // The finally will always run EVEN if there is a return before it will compiled and close the connection.
+                connection.Close();
+            }
+
+            return (IsFound);
+        
+        }
 
 
 
