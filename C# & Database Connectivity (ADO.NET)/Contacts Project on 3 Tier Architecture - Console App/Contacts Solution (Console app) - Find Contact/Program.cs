@@ -141,7 +141,22 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
         }
 
-        
+        static void TestAddNewCountry(string CountryName) {
+
+            clsCountry NewCountry = new clsCountry(CountryName);
+
+            if (NewCountry.Save())
+            {
+                Console.WriteLine($"The Country With ID :{NewCountry.CountryID} Added Successfully");
+            }
+            else {
+                Console.WriteLine($"The Country With Name :{CountryName} Adding Failed ");
+
+
+            }
+
+
+        }
         static void Main(string[] args)
         {
             //TestFindContact(1);
@@ -158,7 +173,11 @@ namespace Contacts_Solution__Console_app____Find_Contact
             // TestContactExist(100);//There is no record in my database with number 100.
             // TestContactExist(1);// there is a record with ID number 1 its exist.
 
-            TestFindCountry(1);
+            //TestFindCountry(1);
+
+
+            ////Done Successfully This Method.
+            TestAddNewCountry("Syria");
         }
     }
 }

@@ -53,5 +53,44 @@ namespace ContactsDataAccessLayer
             return isFound;
         }
 
+
+        public static int AddNewCountry(string CountryName) {
+
+            int Flag = -1;
+
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"INSERT INTO Countries (CountryName)
+             VALUES(@CountryName);
+             SELECT SCOPE_IDENTITY();";
+
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.Parameters.AddWithValue("@CountryName", CountryName);
+
+
+            try
+            {
+                Connection.Open();
+                object Result = command.ExecuteScalar();
+                if (Result != null && int.TryParse(Result.ToString(), out int InsertedID))
+                {
+                    Flag = InsertedID;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+        
+            }
+            finally { 
+            Connection.Close();
+            }
+
+            return (Flag );
+        }
+
+
+    
+    
     }
 }

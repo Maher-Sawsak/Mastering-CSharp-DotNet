@@ -10,16 +10,24 @@ namespace ContactsBusinessLayer
 
  public  class clsCountry
     {
+        enum enMode {Add =  1,Update = 2 };
+        enMode Mode;
 
         public int CountryID { set; get; }
         public string CountryName { set; get; }
 
 
+        public clsCountry(string CountryName) { 
+        this.CountryName = CountryName;
+            this.CountryID = -1;
+            Mode = enMode.Add;
+        }
 
         private clsCountry(int CountryID, string CountryName)
         {
             this.CountryName = CountryName;
             this.CountryID = CountryID;
+            Mode= enMode.Update;
         }
 
         public static clsCountry FindCountryByID(int CountryID)
@@ -36,6 +44,24 @@ namespace ContactsBusinessLayer
            
 
         }
+
+
+        private bool _AddNewCountry() {
+            this.CountryID = clsCountryDataAccess.AddNewCountry(this.CountryName);
+            return (CountryID != -1);
+        }
+
+
+        public  bool Save() {
+
+            switch (Mode) { 
+                case enMode.Add:
+                    return (_AddNewCountry());
+            
+            }
+            return false;
+        }
+
 
     }
 }
