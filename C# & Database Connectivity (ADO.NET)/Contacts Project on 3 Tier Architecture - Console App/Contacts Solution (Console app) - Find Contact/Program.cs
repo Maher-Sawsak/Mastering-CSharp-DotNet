@@ -184,9 +184,20 @@ namespace Contacts_Solution__Console_app____Find_Contact
             }
 
         }
-        
-        
-        
+
+
+        static void TestDeleteCountryRecord(int CountryID) {
+
+            if (clsCountry.DeleteCountry(CountryID))
+            {
+                Console.WriteLine($"Country With ID:  {CountryID} Deleted Successfully.");
+            }
+            else {
+                Console.WriteLine($"Country With ID:  {CountryID} Failed To Delete.");
+
+            }
+
+        }
         
         
         static void Main(string[] args)
@@ -212,7 +223,11 @@ namespace Contacts_Solution__Console_app____Find_Contact
             //TestAddNewCountry("Syria");
 
 
-            TestUpdateCountry(6, "Turkey");
+            // TestUpdateCountry(6, "Turkey");
+
+
+
+            TestDeleteCountryRecord(6);
         }
     }
 }

@@ -58,6 +58,12 @@ namespace ContactsBusinessLayer
         
         }
 
+        public static bool DeleteCountry(int CountryID) 
+        {
+            return (clsCountryDataAccess.DeleteCountry(CountryID));
+        
+        }
+
         public  bool Save() {
 
             switch (Mode) { 

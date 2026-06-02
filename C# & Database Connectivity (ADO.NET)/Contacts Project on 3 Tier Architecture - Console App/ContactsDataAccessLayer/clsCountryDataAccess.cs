@@ -121,7 +121,48 @@ namespace ContactsDataAccessLayer
 
             return (AffectedRows > 0);
         }
-    
-    
+
+
+        public static bool DeleteCountry(int CountryID) 
+        {
+            int NumberOfAffectedRows = 0;
+            SqlConnection Connection =  new SqlConnection(clsDataAccessSettings.ConnectionString);
+            
+            string query = "DELETE FROM Countries WHERE CountryID = @CountryID";
+
+            SqlCommand Command  = new SqlCommand(query, Connection);
+            Command.Parameters.AddWithValue("@CountryID", CountryID);
+
+            try
+            {
+                Connection.Open();
+                NumberOfAffectedRows = Command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                return (false);
+            }
+            finally 
+            {
+                Connection.Close();
+            }
+            return (NumberOfAffectedRows != 0);
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
