@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -154,6 +155,40 @@ namespace ContactsDataAccessLayer
 
 
 
+
+
+        public static DataTable GetAllCountries()
+        {
+            DataTable DataTableContainer = new DataTable();
+
+            SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select * From Countries";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+            try
+            {
+                Connection.Open();
+                SqlDataReader Reader = Command.ExecuteReader();
+
+                if (Reader.HasRows)
+                {
+
+                    DataTableContainer.Load(Reader);
+                }
+                Reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally 
+            {
+                Connection.Close();
+            }
+
+            return DataTableContainer;
+        }
 
 
 

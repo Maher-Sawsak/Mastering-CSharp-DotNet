@@ -198,8 +198,40 @@ namespace Contacts_Solution__Console_app____Find_Contact
             }
 
         }
+
+
+
+        static void PrintAllCountries() {
+
+            DataTable DT = new DataTable();
+
+            DT = clsCountry.GetAllCountries();
+
+            if (DT != null)
+            {
+                foreach (DataRow Row in DT.Rows)
+                {
+                
+                    Console.WriteLine($"Country ID = {Row["CountryID"]} ,Country Name  : {Row["CountryName"]} ");
+
+                }
+            }
+            else {
+                Console.WriteLine("There Is No Data For Countries");
+            }
         
         
+        }
+
+
+
+
+
+
+
+
+
+
         static void Main(string[] args)
         {
             //TestFindContact(1);
@@ -227,7 +259,19 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
-            TestDeleteCountryRecord(6);
+            //TestDeleteCountryRecord(6);
+
+
+
+            PrintAllCountries();
+
+
+
+
+
+
+
+
         }
     }
 }
