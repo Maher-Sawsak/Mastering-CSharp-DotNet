@@ -43,7 +43,7 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
-                isFound = false;
+                throw;
              
             }
             finally
@@ -81,7 +81,7 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
-        
+                throw;
             }
             finally { 
             Connection.Close();
@@ -114,7 +114,7 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
             finally {
                 Connection.Close();
@@ -142,7 +142,7 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
-                return (false);
+                throw;
             }
             finally 
             {
@@ -180,7 +180,7 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
-
+                throw;
             }
             finally 
             {
@@ -213,7 +213,7 @@ namespace ContactsDataAccessLayer
             catch (Exception ex)
             {
 
-                return false;
+                throw;
             }
             finally 
             {
@@ -250,7 +250,7 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
-                IsFound = false;
+                throw;
             }
             finally 
             {
