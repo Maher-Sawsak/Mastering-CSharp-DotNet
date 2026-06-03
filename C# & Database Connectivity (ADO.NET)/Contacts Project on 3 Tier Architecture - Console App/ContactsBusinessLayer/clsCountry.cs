@@ -97,6 +97,29 @@ namespace ContactsBusinessLayer
 
 
 
+        public static clsCountry FindCountryByName(string CountryName) 
+        {
+            int CountryID = 0;
+
+            if (clsCountryDataAccess.GetCountryInfoByCountryNam(ref CountryID, CountryName))
+            {
+
+                return new clsCountry(CountryID, CountryName);
+            }
+            else {
+
+                return null;
+            }
+        
+        }
+
+
+
+
+
+
+
+
 
 
     }

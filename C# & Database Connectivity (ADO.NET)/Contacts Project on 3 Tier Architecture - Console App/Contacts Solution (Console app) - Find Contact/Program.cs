@@ -240,6 +240,23 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
+        static void TestFindCountryByName(string CountryName) {
+
+            clsCountry CountryObject = clsCountry.FindCountryByName(CountryName);
+
+            if (CountryObject != null)
+            {
+                Console.WriteLine($"Country ID:  {CountryObject.CountryID} \nCountry Name : {CountryObject.CountryName}");
+            }
+            else {
+
+                Console.WriteLine($"Country With Name {CountryName} Not Found");
+            }
+            
+               
+        
+        }
+
 
 
 
@@ -281,12 +298,14 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
-            TestIsCountryExist(2);
+            //TestIsCountryExist(2);
 
 
 
 
 
+
+            TestFindCountryByName("Germany");
 
 
 

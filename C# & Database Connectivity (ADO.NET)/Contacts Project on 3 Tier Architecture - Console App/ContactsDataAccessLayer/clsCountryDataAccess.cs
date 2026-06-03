@@ -226,7 +226,38 @@ namespace ContactsDataAccessLayer
         }
 
 
+        public static bool GetCountryInfoByCountryNam(ref int CountryID,string CountryName) 
+        {
+            bool   IsFound = false;
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select * from Countries where CountryName = @CountryName" ;
+
+            SqlCommand command  = new SqlCommand(query , connection);
+            command.Parameters.AddWithValue("@CountryName" , CountryName);
+            try
+            {
+
+                connection.Open();
+                SqlDataReader Reader = command.ExecuteReader();
+                //Remeber Reader will rturn true and false also will move the Reader one step to start read if there is data.
+                if (Reader.Read())
+                {
+                    IsFound = true;
+                    CountryID = (int)Reader["CountryID"];
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+            }
+            finally 
+            {
+                connection.Close();
+            }
+            return IsFound;
+        } 
 
 
 
