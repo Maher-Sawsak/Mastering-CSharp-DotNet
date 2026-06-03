@@ -133,6 +133,8 @@ namespace Contacts_Solution__Console_app____Find_Contact
             {
                 Console.WriteLine($"Country ID : {CountryObject.CountryID} ");
                 Console.WriteLine($"Country Name : {CountryObject.CountryName}");
+                Console.WriteLine($"Country Code : {CountryObject.Code}");
+                Console.WriteLine($"Country PhoneCode : {CountryObject.PhoneCode}");
             }
             else
             {
@@ -142,9 +144,9 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
         }
 
-        static void TestAddNewCountry(string CountryName) {
+        static void TestAddNewCountry(string CountryName,string Code = "",string PhoneCode = "") {
 
-            clsCountry NewCountry = new clsCountry(CountryName);
+            clsCountry NewCountry = new clsCountry(CountryName,Code,PhoneCode);
 
             if (NewCountry.Save())
             {
@@ -161,15 +163,27 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
-        static void TestUpdateCountry(int CountryID,string NewCountryName)
+        static void TestUpdateCountry(int CountryID,string NewCountryName,string Code =  "",string PhoneCode = "")
         {
         
         clsCountry OldRecord = clsCountry.FindCountryByID(CountryID);
-         
+
             if (OldRecord != null)
             {
                 OldRecord.CountryName = NewCountryName;
+                if (!string.IsNullOrEmpty(Code))
+                {
+                    OldRecord.Code = Code;
+                }
 
+                if (!string.IsNullOrEmpty(PhoneCode))
+                {
+                    OldRecord.PhoneCode = PhoneCode;
+                }
+            }
+            else {
+                Console.WriteLine($"Could Not Found Country With This ID : {CountryID}");
+                return;
             }
             
 
@@ -180,7 +194,7 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
             }
             else {
-                Console.WriteLine($"Could Not Found Country With This ID : {CountryID}");
+                Console.WriteLine($"Error: Failed to update Country With ID : {CountryID}");
             }
 
         }
@@ -212,7 +226,7 @@ namespace Contacts_Solution__Console_app____Find_Contact
                 foreach (DataRow Row in DT.Rows)
                 {
                 
-                    Console.WriteLine($"Country ID = {Row["CountryID"]} ,Country Name  : {Row["CountryName"]} ");
+                    Console.WriteLine($@"Country ID = {Row["CountryID"]}        Country Name  : {Row["CountryName"]}                Country Code = {Row["Code"]}                Country PhoneCode  : {Row["PhoneCode"]}");
 
                 }
             }
@@ -247,6 +261,7 @@ namespace Contacts_Solution__Console_app____Find_Contact
             if (CountryObject != null)
             {
                 Console.WriteLine($"Country ID:  {CountryObject.CountryID} \nCountry Name : {CountryObject.CountryName}");
+                Console.WriteLine($"Country Code:  {CountryObject.Code} \nCountry PhoneCode : {CountryObject.PhoneCode}");
             }
             else {
 
@@ -294,10 +309,10 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
             ////Done Successfully This Method with ID 6.
-            //TestAddNewCountry("Syria");
+           // TestAddNewCountry("Turkey","+90","554");
 
 
-            // TestUpdateCountry(6, "Turkey");
+           // TestUpdateCountry(8, "Saudi Arabia","+966","554");
 
 
 
@@ -317,11 +332,11 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
-            // TestFindCountryByName("Germany");
+            //TestFindCountryByName("Germany");
 
 
 
-            TestIsCountryExist("Germany");
+            //TestIsCountryExist("Germany");
 
 
 

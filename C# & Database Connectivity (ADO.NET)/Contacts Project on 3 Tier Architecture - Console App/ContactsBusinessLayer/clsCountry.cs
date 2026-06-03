@@ -17,28 +17,34 @@ namespace ContactsBusinessLayer
 
         public int CountryID { set; get; }
         public string CountryName { set; get; }
+        public string Code { set; get; }
+        public string PhoneCode { set; get; }
 
 
-        public clsCountry(string CountryName) { 
+        public clsCountry(string CountryName, string Code = "", string PhoneCode = "") { 
         this.CountryName = CountryName;
             this.CountryID = -1;
+            this.Code = Code;
+            this.PhoneCode = PhoneCode;
             Mode = enMode.Add;
         }
 
-        private clsCountry(int CountryID, string CountryName)
+        private clsCountry(int CountryID, string CountryName , string Code,string PhoneCode)
         {
             this.CountryName = CountryName;
             this.CountryID = CountryID;
+            this.Code = Code;
+            this.PhoneCode = PhoneCode;
             Mode= enMode.Update;
         }
 
         public static clsCountry FindCountryByID(int CountryID)
         {
-            string CountryName = "";
+            string CountryName = "" , Code = "", PhoneCode = "";
 
-            if (clsCountryDataAccess.FindCountryByID( CountryID, ref CountryName)){
+            if (clsCountryDataAccess.FindCountryByID( CountryID, ref CountryName,ref Code,ref PhoneCode)){
 
-                return new clsCountry(CountryID, CountryName);
+                return new clsCountry(CountryID, CountryName,Code,PhoneCode);
             }
             else {
                 return null;
@@ -49,14 +55,14 @@ namespace ContactsBusinessLayer
 
 
         private bool _AddNewCountry() {
-            this.CountryID = clsCountryDataAccess.AddNewCountry(this.CountryName);
+            this.CountryID = clsCountryDataAccess.AddNewCountry(this.CountryName,this.Code,this.PhoneCode);
             return (CountryID != -1);
         }
 
         private bool _UpdateCountryRecord() {
 
 
-            return (clsCountryDataAccess.UpdateCountry(this.CountryID,this.CountryName));
+            return (clsCountryDataAccess.UpdateCountry(this.CountryID,this.CountryName,this.Code,this.PhoneCode));
         
         }
 
@@ -101,11 +107,12 @@ namespace ContactsBusinessLayer
         public static clsCountry FindCountryByName(string CountryName) 
         {
             int CountryID = 0;
+            string Code = "", PhoneCode = ""; 
 
-            if (clsCountryDataAccess.GetCountryInfoByCountryNam(ref CountryID, CountryName))
+            if (clsCountryDataAccess.GetCountryInfoByCountryName(ref CountryID, CountryName,ref Code,ref PhoneCode))
             {
 
-                return new clsCountry(CountryID, CountryName);
+                return new clsCountry(CountryID, CountryName,Code,PhoneCode);
             }
             else {
 
