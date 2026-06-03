@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using ContactsDataAccessLayer;
@@ -117,7 +118,10 @@ namespace ContactsBusinessLayer
 
 
 
+        public static bool IsCountryExist(string CountryName) {
 
+            return (clsCountryDataAccess.IsCountryExist(CountryName));
+        }
 
 
 

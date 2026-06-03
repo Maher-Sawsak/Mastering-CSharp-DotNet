@@ -259,7 +259,19 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
+        static void TestIsCountryExist(string CountryName)
+        {
+            if (clsCountry.IsCountryExist(CountryName))
+            {
 
+                Console.WriteLine($"Country With Name {CountryName} Is Found Successfully");
+            }
+            else
+            {
+                Console.WriteLine($"Country With Name {CountryName} Failed To Found");
+            }
+
+        }
 
 
         static void Main(string[] args)
@@ -305,11 +317,11 @@ namespace Contacts_Solution__Console_app____Find_Contact
 
 
 
-            TestFindCountryByName("Germany");
+            // TestFindCountryByName("Germany");
 
 
 
-
+            TestIsCountryExist("Germany");
 
 
 

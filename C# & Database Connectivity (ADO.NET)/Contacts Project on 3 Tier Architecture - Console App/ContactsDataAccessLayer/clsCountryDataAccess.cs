@@ -257,10 +257,43 @@ namespace ContactsDataAccessLayer
                 connection.Close();
             }
             return IsFound;
-        } 
+        }
 
 
 
 
+        public static bool IsCountryExist(string CountryName) 
+        {
+
+            bool IsFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select Found = 1 From Countries where CountryName = @CountryName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CountryName", CountryName);
+
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+                if (Result != null)
+                {
+                    IsFound = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                // The finally will always run EVEN if there is a return before it will compiled and close the connection.
+                connection.Close();
+            }
+
+            return (IsFound);
+        }
     }
 }
